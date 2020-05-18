@@ -3,6 +3,9 @@
 ## Project Overview
 To create an automated scrpaing script to aquire information about Mars.
 
+## Important Information
+Please use files scrapingch.py, app_c.py, indexch.html to test the module challenge. Thank you.
+
 ## Resources
  - Data Sources:
    - https://mars.nasa.gov/news/

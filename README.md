@@ -4,7 +4,8 @@
 To create an automated scrpaing script to aquire information about Mars.
 
 ## Important Information
-Please use files scrapingch.py, app_c.py, indexch.html to test the module challenge. Thank you.
+Please use files scrapingch.py, app_c.py, indexch.html to test the module challenge. These files are located in the "app" folder"
+Thank you.
 
 ## Resources
  - Data Sources:

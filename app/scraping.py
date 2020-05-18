@@ -1,11 +1,17 @@
 # Import Splinter and BeautifulSoup and Pandas
 from splinter import Browser
 from bs4 import BeautifulSoup
+
+# Import dependencies
 import pandas as pd
+import datetime as dt
+from datetime import datetime
 
 def scrape_all():
-   # Initiate headless driver for deployment
-   browser = Browser("chrome", executable_path="chromedriver", headless=True)
+    # Initiate headless driver for deployment
+    browser = Browser("chrome", executable_path="chromedriver", headless=True)
+
+    news_title, news_paragraph = mars_news(browser)
     # Run all scraping functions and store results in dictionary
     data = {
         "news_title": news_title,
@@ -13,11 +19,8 @@ def scrape_all():
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
         "last_modified": dt.datetime.now()
-}
-
-# Set the executable path and initialize the chrome browser in splinter
-executable_path = {'executable_path': 'chromedriver.exe'}
-browser = Browser('chrome', **executable_path, headless=False)
+        }
+    return data
 
 def mars_news(browser):
 
@@ -42,17 +45,6 @@ def mars_news(browser):
 
     except AttributeError:
         return None, None
-
-    slide_elem = news_soup.select_one('ul.item_list li.slide')
-    slide_elem.find("div", class_='content_title')
-
-    # Use the parent element to find the first `a` tag and save it as `news_title`
-    news_title = slide_elem.find("div", class_='content_title').get_text()
-    news_title
-
-    # Use the parent element to find the paragraph text
-    news_p = slide_elem.find('div', class_="article_teaser_body").get_text()
-    news_p
 
     return news_title, news_p
 
@@ -107,8 +99,6 @@ def mars_facts():
 
     # Convert dataframe into HTML format, add bootstrap
     return df.to_html() 
-
-browser.quit()
 
 if __name__ == "__main__":
     # If running as script, print scraped data
